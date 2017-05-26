@@ -14,14 +14,14 @@ RUN sudo apt-get install -y mongodb-org
 # Start MongoDB
 RUN sudo service mongod start
 
-
-# Install
+# Setup japanese-news-crawler
 RUN sudo apt-get install -y virtualenv
-RUN virtualenv venv --python=python3
-RUN source venv/bin/activate
 RUN git clone https://github.com/Hironsan/japanese-news-crawler.git
 WORKDIR japanese-news-crawler
+RUN chmod +x run_crawler.sh
+RUN virtualenv venv --python=python3
+RUN source venv/bin/activate
 RUN pip install -r requirements.txt
 
-# Start crawler
-RUN scrapy crawl news
+# write cron setup to /etc/crontab
+RUN echo "24 * * * * ubuntu /home/ubuntu/japanese-news-crawler/run_crawler.sh > /tmp/crawler.log 2>&1" >> /etc/crontab

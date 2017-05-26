@@ -21,8 +21,7 @@ So far, following news sites are supported:
 ```shell
 $ sudo apt-get install docker.io
 $ sudo usermod -aG docker $USER
-$ git clone https://github.com/Hironsan/japanese-news-crawler.git
-$ cd japanese-news-crawler
+$ wget https://raw.githubusercontent.com/Hironsan/japanese-news-crawler/master/dockerfile
 $ docker build .
 $ docker images
 $ docker run -it IMAGE_ID /bin/bash
