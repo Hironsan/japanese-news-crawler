@@ -27,7 +27,7 @@ $ sudo usermod -aG docker $USER
 After Docker installation, you have to prepare Docker images:
 
 ```shell
-$ wget https://raw.githubusercontent.com/Hironsan/japanese-news-crawler/master/dockerfile
+$ wget https://raw.githubusercontent.com/Hironsan/japanese-news-crawler/master/Dockerfile
 $ docker build -t newscrawler .
 $ docker pull mongo
 ```
