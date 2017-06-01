@@ -72,7 +72,12 @@ ITEM_PIPELINES = {
   'scrapy_mongodb.MongoDBPipeline': 300,
 }
 
-MONGODB_URI = 'mongodb://localhost:27017'
+import os
+ADDR = os.environ['MNG_PORT_27017_TCP_ADDR']
+PORT = os.environ['MNG_PORT_27017_TCP_PORT']
+
+# MONGODB_URI = 'mongodb://localhost:27017'
+MONGODB_URI = 'mongodb://{}:{}'.format(ADDR, PORT)
 MONGODB_DATABASE = 'nikkei'
 MONGODB_COLLECTION = 'items'
 MONGODB_UNIQUE_KEY = 'url'

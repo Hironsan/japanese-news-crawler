@@ -17,14 +17,26 @@ So far, following news sites are supported:
 * Docker(Preferable)
 
 ## Installation
+First of all, you should install Docker:
 
 ```shell
 $ sudo apt-get install docker.io
 $ sudo usermod -aG docker $USER
-$ wget https://raw.githubusercontent.com/Hironsan/japanese-news-crawler/master/dockerfile
-$ docker build .
-$ docker images
-$ docker run -it IMAGE_ID /bin/bash
 ```
 
-## Usage
+After Docker installation, you have to prepare Docker images:
+
+```shell
+$ wget https://raw.githubusercontent.com/Hironsan/japanese-news-crawler/master/dockerfile
+$ docker build -t newscrawler .
+$ docker pull mongo
+```
+
+Finaly, you have to create Docker container:
+
+```shell
+$ mkdir ~/data
+$ docker run -d -p 27017:27017 --name dbserver -v ~/data:/data/db mongo
+$ docker run -it --name crawler --link dbserver:mng newscrawler
+```
+
