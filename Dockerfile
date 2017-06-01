@@ -16,5 +16,6 @@ RUN pip install -r requirements.txt
 
 # write cron setup to /etc/crontab
 RUN apt-get install -y cron
-RUN echo "24 * * * * root /japanese-news-crawler/run_crawler.sh > /var/log/crawler.log 2>&1" >> /etc/crontab
+RUN printenv | sed 's/^\(.*\)$/export \1/g' > /root/project_env.sh
+RUN echo "24 * * * * root ./root/project_env.sh; /japanese-news-crawler/run_crawler.sh > /var/log/crawler.log 2>&1" >> /etc/crontab
 CMD ["cron", "-f"]
