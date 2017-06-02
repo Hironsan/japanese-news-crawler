@@ -24,4 +24,5 @@ pip install -r requirements.txt
 
 # write cron setup to /etc/crontab
 sudo apt-get install -y cron
-sudo echo "24 * * * * ubuntu /home/ubuntu/japanese-news-crawler/run_crawler.sh > /var/log/crawler.log 2>&1" >> /etc/crontab
+sudo touch /var/log/crawler.log
+sudo sh -c 'echo "24 * * * * root /home/ubuntu/japanese-news-crawler/run_crawler.sh > /var/log/crawler.log 2>&1" >> /etc/crontab'
