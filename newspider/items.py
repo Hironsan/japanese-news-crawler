@@ -18,6 +18,10 @@ class Page(scrapy.Item):
     url = scrapy.Field()
     key = scrapy.Field()
     html = scrapy.Field()
+    title = scrapy.Field()
+    body = scrapy.Field()
+    date = scrapy.Field()
+    category = scrapy.Field()
 
     def __repr__(self):
         p = Page(self)
